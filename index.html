@@ -9,7 +9,7 @@
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <style>
-    /* 調整按鈕尺寸讓它看起來圓形 */
+    /* 調整主題切換按鈕尺寸，確保圓形外觀 */
     .theme-toggle {
       width: 50px;
       height: 50px;
@@ -68,6 +68,11 @@
         <button class="btn btn-outline-primary" onclick="searchFromInput()">搜尋</button>
       </div>
     </div>
+
+    <!-- 清除網站資料按鈕，置於最下方 -->
+    <div class="mb-4 text-center">
+      <button class="btn btn-danger" onclick="clearWebsiteData()">清除網站資料</button>
+    </div>
   </div>
 
   <script>
@@ -114,6 +119,18 @@
     // 清空歷史紀錄
     function clearHistory() {
       document.getElementById("historyList").innerHTML = "";
+    }
+
+    // 清除網站資料（包括 localStorage 與歷史紀錄）
+    function clearWebsiteData() {
+      if (confirm("確定要清除網站資料嗎？這會重置主題設定與歷史紀錄。")) {
+        localStorage.clear();
+        clearHistory();
+        alert("網站資料已清除。");
+        // 重設主題為預設(light)
+        document.documentElement.setAttribute("data-bs-theme", "light");
+        updateToggleButton("light");
+      }
     }
 
     // 搜尋功能：使用瀏覽器定位後開啟 Google Maps 搜尋結果
