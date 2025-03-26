@@ -16,6 +16,7 @@
       font-size: 1.5rem;
       padding: 0;
     }
+    /* 若需要調整 footer 背景色或透明度，可自行加入 */
   </style>
 </head>
 <body>
@@ -69,15 +70,15 @@
       </div>
     </div>
 
-    <!-- 清除網站資料按鈕，置於最下方 -->
+    <!-- 清除網站資料按鈕，置於內容區塊最下方 -->
     <div class="mb-4 text-center">
       <button class="btn btn-danger" onclick="clearWebsiteData()">清除網站資料</button>
     </div>
   </div>
 
-  <!-- 作者資訊 -->
-  <footer class="bg-light text-center py-3">
-    <p class="mb-0">&copy; 2025 Lunch Navigator. Developed by LNU.</p>
+  <!-- 固定在螢幕最下方的作者資訊 footer -->
+  <footer class="fixed-bottom text-center py-3">
+    <p class="mb-0">&copy; 2025 Lunch Navigator. Developed by Your Name.</p>
   </footer>
 
   <script>
