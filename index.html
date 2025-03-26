@@ -8,6 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Animate.css CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
     /* 調整主題切換按鈕尺寸與位置，確保圓形外觀且不被覆蓋 */
     .theme-toggle {
@@ -17,6 +19,10 @@
       padding: 0;
       z-index: 1050;
     }
+    button:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
   </style>
 </head>
 <body>
@@ -27,7 +33,7 @@
 
   <div class="container py-5">
     <div class="text-center mb-4">
-      <h1 class="display-5 fw-bold">午餐吃啥？</h1>
+      <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">午餐吃啥？</h1>
       <p class="lead">幫你決定今天中午要吃什麼！</p>
     </div>
 
@@ -111,7 +117,7 @@
       listContainer.innerHTML = "";
       lunchOptions.forEach(item => {
         const li = document.createElement("li");
-        li.className = "list-group-item";
+        li.className = "list-group-item animate__animated animate__fadeInUp";
         li.textContent = item;
         listContainer.appendChild(li);
       });
@@ -119,23 +125,28 @@
 
     // 隨機決定午餐
     function decideLunch() {
-      if (lunchOptions.length === 0) {
-        alert("目前沒有任何選項！");
-        return;
-      }
-      const randomIndex = Math.floor(Math.random() * lunchOptions.length);
-      const choice = lunchOptions[randomIndex];
-      document.getElementById("result").textContent = `你可以吃：${choice}`;
-      addToHistory(choice);
-    }
+  if (lunchOptions.length === 0) {
+    alert("目前沒有任何選項！");
+    return;
+  }
+  const randomIndex = Math.floor(Math.random() * lunchOptions.length);
+  const choice = lunchOptions[randomIndex];
+  document.getElementById("result").textContent = `你可以吃：${choice}`;
+  document.getElementById("result").classList.add("animate__animated", "animate__tada");
+  setTimeout(() => {
+    document.getElementById("result").classList.remove("animate__animated", "animate__tada");
+  }, 1000);
+
+  addToHistory(choice); // ✅ 正確呼叫外部的函數
+}
 
     // 新增歷史紀錄
     function addToHistory(item) {
-      const li = document.createElement("li");
-      li.className = "list-group-item";
-      li.textContent = item;
-      document.getElementById("historyList").prepend(li);
-    }
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.textContent = item;
+    document.getElementById("historyList").prepend(li);
+  }
 
     // 新增自訂餐點選項
     function addOption() {
