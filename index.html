@@ -15,12 +15,13 @@
       height: 50px;
       font-size: 1.5rem;
       padding: 0;
+      z-index: 1050; /* 提高 z-index 避免被其他元素覆蓋 */
     }
   </style>
 </head>
 <body>
-  <!-- 主題切換按鈕（圖示），固定在右下角，圓形且帶陰影 -->
-  <button class="btn btn-outline-dark position-fixed bottom-0 end-0 m-3 theme-toggle rounded-circle shadow" onclick="toggleTheme()">
+  <!-- 主題切換按鈕（圖示），固定在右上角 -->
+  <button class="btn btn-outline-dark position-fixed top-0 end-0 m-3 theme-toggle rounded-circle shadow" onclick="toggleTheme()">
     <i class="bi bi-moon-fill"></i>
   </button>
 
@@ -75,24 +76,10 @@
     <div class="mb-4 text-center">
       <button class="btn btn-danger" onclick="clearWebsiteData()">清除網站資料</button>
     </div>
-
-    <!-- 摺疊式午餐清單 -->
-    <div class="mb-4">
-      <button class="btn btn-outline-secondary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#lunchListCollapse" aria-expanded="false" aria-controls="lunchListCollapse">
-        顯示所有午餐選項
-      </button>
-      <div class="collapse mt-2" id="lunchListCollapse">
-        <div class="card card-body">
-          <ul id="lunchList" class="list-group list-group-flush">
-            <!-- 預設餐點會顯示在這裡 -->
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
 
-  <!-- 固定在螢幕最下方的作者資訊 footer -->
-  <footer class="fixed-bottom text-center py-3">
+  <!-- 固定在螢幕最下方的作者資訊 footer（背景模糊效果可自行加入） -->
+  <footer class="fixed-bottom text-center py-3" style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);">
     <p class="mb-0">&copy; 2025 What's for Lunch?. Developed by LNU.</p>
   </footer>
 
@@ -104,9 +91,10 @@
       "越南河粉", "韓式拌飯", "炒飯", "披薩", "三明治", "沙拉"
     ];
 
-    // 在頁面載入時更新摺疊清單內容
+    // 更新摺疊午餐清單（若有使用，可加入這部分）
     function updateLunchList() {
       const listContainer = document.getElementById("lunchList");
+      if (!listContainer) return;
       listContainer.innerHTML = "";
       lunchOptions.forEach(item => {
         const li = document.createElement("li");
@@ -144,7 +132,7 @@
         lunchOptions.push(value);
         alert(`已新增選項：${value}`);
         input.value = "";
-        updateLunchList();  // 更新摺疊清單
+        updateLunchList(); // 若有摺疊午餐清單則更新
       } else {
         alert("請輸入有效的餐點名稱");
       }
@@ -211,7 +199,7 @@
       }
     }
 
-    // 頁面載入時還原主題設定並更新按鈕，以及更新午餐清單
+    // 頁面載入時還原主題設定並更新按鈕，以及更新摺疊午餐清單（若有使用）
     window.addEventListener("DOMContentLoaded", () => {
       const saved = localStorage.getItem("bs-theme") || "light";
       document.documentElement.setAttribute("data-bs-theme", saved);
