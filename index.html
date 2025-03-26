@@ -39,6 +39,7 @@
       <h2 id="result" class="text-success"></h2>
     </div>
 
+    <!-- 自訂午餐選項 -->
     <div class="card mb-4">
       <div class="card-header">
         <strong>自訂午餐選項</strong>
@@ -52,6 +53,7 @@
       </div>
     </div>
 
+    <!-- 歷史紀錄 -->
     <div class="card mb-4">
       <div class="card-header">
         <strong>歷史紀錄</strong>
@@ -69,9 +71,23 @@
       </div>
     </div>
 
-    <!-- 清除網站資料按鈕，置於內容區塊最下方 -->
+    <!-- 清除網站資料按鈕 -->
     <div class="mb-4 text-center">
       <button class="btn btn-danger" onclick="clearWebsiteData()">清除網站資料</button>
+    </div>
+
+    <!-- 摺疊式午餐清單 -->
+    <div class="mb-4">
+      <button class="btn btn-outline-secondary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#lunchListCollapse" aria-expanded="false" aria-controls="lunchListCollapse">
+        顯示所有午餐選項
+      </button>
+      <div class="collapse mt-2" id="lunchListCollapse">
+        <div class="card card-body">
+          <ul id="lunchList" class="list-group list-group-flush">
+            <!-- 預設餐點會顯示在這裡 -->
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -87,6 +103,18 @@
       "咖哩飯", "義大利麵", "炸雞", "鍋燒意麵",
       "越南河粉", "韓式拌飯", "炒飯", "披薩", "三明治", "沙拉"
     ];
+
+    // 在頁面載入時更新摺疊清單內容
+    function updateLunchList() {
+      const listContainer = document.getElementById("lunchList");
+      listContainer.innerHTML = "";
+      lunchOptions.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.textContent = item;
+        listContainer.appendChild(li);
+      });
+    }
 
     // 隨機決定午餐
     function decideLunch() {
@@ -116,6 +144,7 @@
         lunchOptions.push(value);
         alert(`已新增選項：${value}`);
         input.value = "";
+        updateLunchList();  // 更新摺疊清單
       } else {
         alert("請輸入有效的餐點名稱");
       }
@@ -182,11 +211,12 @@
       }
     }
 
-    // 頁面載入時還原主題設定並更新按鈕
+    // 頁面載入時還原主題設定並更新按鈕，以及更新午餐清單
     window.addEventListener("DOMContentLoaded", () => {
       const saved = localStorage.getItem("bs-theme") || "light";
       document.documentElement.setAttribute("data-bs-theme", saved);
       updateToggleButton(saved);
+      updateLunchList();
     });
   </script>
 
