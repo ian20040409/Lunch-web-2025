@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-  <!-- 主題切換按鈕（圖示），固定在左上角 -->
-  <button class="btn btn-outline-dark position-fixed top-0 start-0 m-3" onclick="toggleTheme()">
+  <!-- 深色模式切換按鈕（固定在左上角）-->
+  <button class="btn btn-outline-dark position-fixed top-0 start-0 m-3 theme-toggle" onclick="toggleTheme()">
     <i class="bi bi-moon-fill"></i>
   </button>
 
@@ -59,7 +59,6 @@
         <button class="btn btn-outline-primary" onclick="searchFromInput()">搜尋</button>
       </div>
     </div>
-
   </div>
 
   <script>
@@ -128,19 +127,35 @@
       }
     }
 
-    // 切換 Bootstrap 主題（使用 data-bs-theme 屬性）
+    // 切換主題：依據目前 data-bs-theme 切換，並更新按鈕圖示
     function toggleTheme() {
       const html = document.documentElement;
       const current = html.getAttribute("data-bs-theme") || "light";
-      const next = current === "dark" ? "light" : "dark";
+      const next = current === "light" ? "dark" : "light";
       html.setAttribute("data-bs-theme", next);
       localStorage.setItem("bs-theme", next);
+      updateToggleButton(next);
     }
 
-    // 頁面載入時還原主題設定
+    // 更新按鈕圖示（dark 模式顯示太陽，light 模式顯示月亮）
+    function updateToggleButton(theme) {
+      const toggleButton = document.querySelector('.theme-toggle');
+      if (theme === "dark") {
+        toggleButton.innerHTML = '<i class="bi bi-sun-fill"></i>';
+        toggleButton.classList.remove('btn-outline-dark');
+        toggleButton.classList.add('btn-outline-light');
+      } else {
+        toggleButton.innerHTML = '<i class="bi bi-moon-fill"></i>';
+        toggleButton.classList.remove('btn-outline-light');
+        toggleButton.classList.add('btn-outline-dark');
+      }
+    }
+
+    // 頁面載入時還原主題設定並更新按鈕
     window.addEventListener("DOMContentLoaded", () => {
       const saved = localStorage.getItem("bs-theme") || "light";
       document.documentElement.setAttribute("data-bs-theme", saved);
+      updateToggleButton(saved);
     });
   </script>
 
