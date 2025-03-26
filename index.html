@@ -4,29 +4,17 @@
   <meta charset="UTF-8">
   <title>午餐吃啥？</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CDN -->
+
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <!-- Animate.css CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <style>
-    /* 調整主題切換按鈕尺寸與位置，確保圓形外觀且不被覆蓋 */
-    .theme-toggle {
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
-      padding: 0;
-      z-index: 1050;
-    }
-    button:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
-  }
-  </style>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- 主題切換按鈕（圖示），固定在右上角 -->
+  <!-- 主題切換按鈕 -->
   <button class="btn btn-outline-dark position-fixed top-0 end-0 m-3 theme-toggle rounded-circle shadow" onclick="toggleTheme()">
     <i class="bi bi-moon-fill"></i>
   </button>
@@ -90,149 +78,19 @@
       </button>
       <div class="collapse mt-2" id="lunchListCollapse">
         <div class="card card-body">
-          <ul id="lunchList" class="list-group list-group-flush">
-            <!-- 預設餐點將在頁面載入時顯示 -->
-          </ul>
+          <ul id="lunchList" class="list-group list-group-flush"></ul>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 固定在螢幕最下方的作者資訊 footer，背景模糊效果 -->
-  <footer class="fixed-bottom text-center py-3" style="background: rgba(255,255,255,0.5); backdrop-filter: blur(10px);">
+  <!-- Footer -->
+  <footer class="fixed-bottom text-center py-3 footer-blur">
     <p class="mb-0">Developed by LNU.</p>
   </footer>
 
-  <script>
-    // 預設餐點選項
-    let lunchOptions = [
-      "便當", "牛肉麵", "滷肉飯", "拉麵", "壽司",
-      "咖哩飯", "義大利麵", "炸雞", "鍋燒意麵",
-      "越南河粉", "韓式拌飯", "炒飯", "披薩", "三明治", "沙拉"
-    ];
-
-    // 更新摺疊午餐清單內容
-    function updateLunchList() {
-      const listContainer = document.getElementById("lunchList");
-      listContainer.innerHTML = "";
-      lunchOptions.forEach(item => {
-        const li = document.createElement("li");
-        li.className = "list-group-item animate__animated animate__fadeInUp";
-        li.textContent = item;
-        listContainer.appendChild(li);
-      });
-    }
-
-    // 隨機決定午餐
-    function decideLunch() {
-  if (lunchOptions.length === 0) {
-    alert("目前沒有任何選項！");
-    return;
-  }
-  const randomIndex = Math.floor(Math.random() * lunchOptions.length);
-  const choice = lunchOptions[randomIndex];
-  document.getElementById("result").textContent = `你可以吃：${choice}`;
-  document.getElementById("result").classList.add("animate__animated", "animate__tada");
-  setTimeout(() => {
-    document.getElementById("result").classList.remove("animate__animated", "animate__tada");
-  }, 1000);
-
-  addToHistory(choice); // ✅ 正確呼叫外部的函數
-}
-
-    // 新增歷史紀錄
-    function addToHistory(item) {
-    const li = document.createElement("li");
-    li.className = "list-group-item";
-    li.textContent = item;
-    document.getElementById("historyList").prepend(li);
-  }
-
-    // 新增自訂餐點選項
-    function addOption() {
-      const input = document.getElementById("customOption");
-      const value = input.value.trim();
-      if (value !== "") {
-        lunchOptions.push(value);
-        alert(`已新增選項：${value}`);
-        input.value = "";
-        updateLunchList();
-      } else {
-        alert("請輸入有效的餐點名稱");
-      }
-    }
-
-    // 清空歷史紀錄
-    function clearHistory() {
-      document.getElementById("historyList").innerHTML = "";
-    }
-
-    // 清除網站資料（包括 localStorage 與歷史紀錄）
-    function clearWebsiteData() {
-      if (confirm("確定要清除網站資料嗎？這會重置主題設定與歷史紀錄。")) {
-        localStorage.clear();
-        clearHistory();
-        alert("網站資料已清除。");
-        // 重設主題為預設(light)
-        document.documentElement.setAttribute("data-bs-theme", "light");
-        updateToggleButton("light");
-      }
-    }
-
-    // 搜尋功能：使用瀏覽器定位後開啟 Google Maps 搜尋結果
-    function searchFromInput() {
-      const keyword = document.getElementById("searchInput").value.trim();
-      if (!keyword) return;
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          const url = `https://www.google.com/maps/search/${encodeURIComponent(keyword)}/@${lat},${lng},15z`;
-          window.open(url, '_blank');
-        }, () => {
-          const url = `https://www.google.com/maps/search/${encodeURIComponent(keyword)}`;
-          window.open(url, '_blank');
-        });
-      } else {
-        const url = `https://www.google.com/maps/search/${encodeURIComponent(keyword)}`;
-        window.open(url, '_blank');
-      }
-    }
-
-    // 切換主題：根據目前 data-bs-theme 切換，並更新按鈕圖示
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute("data-bs-theme") || "light";
-      const next = current === "light" ? "dark" : "light";
-      html.setAttribute("data-bs-theme", next);
-      localStorage.setItem("bs-theme", next);
-      updateToggleButton(next);
-    }
-
-    // 更新按鈕圖示（dark 模式顯示太陽，light 模式顯示月亮）
-    function updateToggleButton(theme) {
-      const toggleButton = document.querySelector('.theme-toggle');
-      if (theme === "dark") {
-        toggleButton.innerHTML = '<i class="bi bi-sun-fill"></i>';
-        toggleButton.classList.remove('btn-outline-dark');
-        toggleButton.classList.add('btn-outline-light');
-      } else {
-        toggleButton.innerHTML = '<i class="bi bi-moon-fill"></i>';
-        toggleButton.classList.remove('btn-outline-light');
-        toggleButton.classList.add('btn-outline-dark');
-      }
-    }
-
-    // 頁面載入時還原主題設定並更新按鈕，同時更新摺疊午餐清單
-    window.addEventListener("DOMContentLoaded", () => {
-      const saved = localStorage.getItem("bs-theme") || "light";
-      document.documentElement.setAttribute("data-bs-theme", saved);
-      updateToggleButton(saved);
-      updateLunchList();
-    });
-  </script>
-
-  <!-- Bootstrap JS -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
