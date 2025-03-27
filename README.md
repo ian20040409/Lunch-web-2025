@@ -4,6 +4,7 @@
 
 ## Screenshots
 ![Lunch Screenshot](https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/1.PNG)
+<img src="https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/1.PNG" width="30%">
 
 
 
