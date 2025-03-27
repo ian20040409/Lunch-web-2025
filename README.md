@@ -6,8 +6,8 @@
 ## Screenshots
 
 <div style="display: flex; gap: 10px;">
-  <img src="https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/1.PNG" width="30%">
-  <img src="https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/2.PNG" width="30%">
+  <img src="https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/1.PNG" width="40%">
+  <img src="https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/2.PNG" width="40%">
 </div>
 
 ## 使用技術
