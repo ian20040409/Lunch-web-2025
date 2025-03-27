@@ -24,6 +24,13 @@
       <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">午餐吃啥？</h1>
       <p class="lead">幫你決定今天中午要吃什麼！</p>
     </div>
+    
+    <!-- 顯示所有午餐選項 Modal 開啟按鈕，放在上方 -->
+    <div class="text-center mb-4">
+      <button class="btn btn-info btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#lunchModal">
+        顯示所有午餐選項
+      </button>
+    </div>
 
     <div class="text-center mb-4">
       <button class="btn btn-primary btn-lg me-2" onclick="decideLunch()">決定！</button>
@@ -75,15 +82,21 @@
     <div class="mb-4 text-center">
       <button class="btn btn-danger" onclick="clearWebsiteData()">清除網站資料</button>
     </div>
+  </div>
 
-    <!-- 摺疊式午餐清單 -->
-    <div class="mb-4">
-      <button class="btn btn-info btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#lunchListCollapse" aria-expanded="false" aria-controls="lunchListCollapse">
-        顯示所有午餐選項
-      </button>
-      <div class="collapse mt-2" id="lunchListCollapse">
-        <div class="card card-body">
+  <!-- Modal for 顯示所有午餐選項 -->
+  <div class="modal fade" id="lunchModal" tabindex="-1" aria-labelledby="lunchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="lunchModalLabel">所有午餐選項</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+        </div>
+        <div class="modal-body">
           <ul id="lunchList" class="list-group list-group-flush"></ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
         </div>
       </div>
     </div>
