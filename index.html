@@ -65,6 +65,11 @@
         <button class="btn btn-outline-primary" onclick="searchFromInput()">搜尋</button>
       </div>
     </div>
+    
+    <!-- 內嵌地圖顯示區塊 -->
+    <div class="mb-4">
+      <iframe id="mapFrame" width="100%" height="300" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 
     <!-- 清除網站資料按鈕 -->
     <div class="mb-4 text-center">
@@ -85,7 +90,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="fixed-bottom text-center py-3 footer-blur">
+  <footer class="fixed-bottom text-center py-3 footer-blur" style="background: rgba(255,255,255,0.5); backdrop-filter: blur(10px);">
     <p class="mb-0">Developed by LNU.</p>
   </footer>
 
