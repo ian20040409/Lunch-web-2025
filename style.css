@@ -9,12 +9,15 @@
   
   /* 按鈕 hover 動畫 */
   button:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
+    transform: scale(1.15);
+    transition: transform 0.3s ease-in-out;
   }
   
   /* footer 模糊背景 */
   .footer-blur {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
+    color: black;
+    
   }
+  
