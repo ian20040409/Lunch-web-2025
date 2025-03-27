@@ -3,8 +3,7 @@
 [前往網站](https://ian20040409.github.io/Lunch-Navigator-web-2025/)
 
 ## Screenshots
-
-![Lunch Screenshot](https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/2.png)![Lunch Screenshot](https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/1.PNG)
+![Lunch Screenshot](https://raw.githubusercontent.com/ian20040409/Lunch-Navigator-web-2025/refs/heads/main/readme_pic/1.PNG)
 
 
 
