@@ -1,4 +1,6 @@
 <h1>午餐吃啥？</h1>
+<h2>Screenshots</h2>
+![image](https://ian20040409.github.io/Lunch-Navigator-web-2025/readme_pic/1.JPG)
 <hr><p>https://ian20040409.github.io/Lunch-Navigator-web-2025/</p><h2>Technologies Used</h2>
 <hr><ul>
 <li>HTML</li>
