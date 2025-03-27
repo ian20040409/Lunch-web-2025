@@ -4,7 +4,7 @@
 
 ## Screenshots
 
-![Lunch Screenshot](https://ian20040409.github.io/Lunch-Navigator-web-2025/readme_pic/1.mPNG)
+![Lunch Screenshot](https://ian20040409.github.io/Lunch-Navigator-web-2025/readme_pic/1.PNG)
 
 ## 使用技術
 
