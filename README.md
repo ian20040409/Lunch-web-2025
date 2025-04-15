@@ -2,6 +2,7 @@
 
 [前往網站](https://ian20040409.github.io/Lunch-Navigator-web-2025/)
 [下載 Android app](https://github.com/ian20040409/Lunch-Navigator-web-2025/raw/refs/heads/main/app-release.apk)
+[iOS repo](https://github.com/ian20040409/Lunch-webview-swift)
 
 ## Screenshots
 
