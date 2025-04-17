@@ -4,7 +4,8 @@
 ### Android apps
 [下載 Android app](https://github.com/ian20040409/Lunch-Navigator-web-2025/raw/refs/heads/main/app-release.apk) 
 ### Swift Source Code
-[iOS repo](https://github.com/ian20040409/Lunch-webview-swift)
+[v1 repo](https://github.com/ian20040409/Lunch-webview-swift)
+[v2 repo](https://github.com/ian20040409/lunch2-xcode)
 
 ## Screenshots
 
